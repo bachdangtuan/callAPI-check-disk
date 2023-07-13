@@ -60,17 +60,22 @@ ketqua=$(sshpass -p $passServer ssh $username@$ip "cd /home/${pathscript}/check-
 readarray -t result_array <<< "$ketqua"
 
 filesystem=${result_array[0]}
-echo 'filesystem' $filesystem
+size=${result_array[1]}
+used=${result_array[2]}
+available=${result_array[3]}
+use=${result_array[4]}
 
-# for ((i=0; i<${#filesystem[@]}; i++)); do
-#     curl -X POST $URL_API/api/check-disk/virtual-disk \
-#     -H "Content-Type: application/json" \
-#     -d '{
-#         "belongToVirtualMachine": 2,
-#         "file_system": "'"${filesystem[$i]}"'",
-#         "size": "'"${size[$i]}"'",
-#         "used": "'"${used[$i]}"'",
-#         "available": "'"${available[$i]}"'",
-#         "use%": "'"${usePer[$i]}"'"
-#         }'
-# done
+# echo 'filesystem' $filesystem
+
+for ((i=0; i<${#filesystem[@]}; i++)); do
+    curl -X POST $URL_API/api/check-disk/virtual-disk \
+    -H "Content-Type: application/json" \
+    -d '{
+        "belongToVirtualMachine": 2,
+        "file_system": "'"${filesystem[$i]}"'",
+        "size": "'"${size[$i]}"'",
+        "used": "'"${used[$i]}"'",
+        "available": "'"${available[$i]}"'",
+        "use%": "'"${usePer[$i]}"'"
+        }'
+done
