@@ -3,7 +3,7 @@
 URL_API='http://10.0.50.99:8000'
 
 ip=10.0.0.20
-passServer='Isofh#r0Ot@2023*'
+passServer='vailozthenhi'
 username='root'
 pathscript='isofh'
 idMayAo=1
