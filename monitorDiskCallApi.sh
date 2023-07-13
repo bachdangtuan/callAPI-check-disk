@@ -65,7 +65,7 @@ used=${result_array[2]}
 available=${result_array[3]}
 use=${result_array[4]}
 
-# echo 'filesystem' $filesystem
+echo 'filesystem' $filesystem
 
 for ((i=0; i<${#filesystem[@]}; i++)); do
     curl -X POST $URL_API/api/check-disk/virtual-disk \
