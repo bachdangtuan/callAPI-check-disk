@@ -65,17 +65,25 @@ used=${result_array[2]}
 available=${result_array[3]}
 usePer=${result_array[4]}
 
-echo 'filesystem' $filesystem
 
-for ((i=0; i<${#filesystem[@]}; i++)); do
+
+
+echo '----Disk Partition Check----'
+     arrFilesystem=($(echo "$filesystem" | cut -d " " -f 1-))
+     arrSize=($(echo "$size" | cut -d " " -f 1-))
+     arrUsed=($(echo "$used" | cut -d " " -f 1-))
+     arrAvailable=($(echo "$available" | cut -d " " -f 1-))
+     arrUsePer=($(echo "$usePer" | cut -d " " -f 1-))
+
+for ((i=0; i<${#arrFilesystem[@]}; i++)); do
     curl -X POST $URL_API/api/check-disk/virtual-disk \
     -H "Content-Type: application/json" \
     -d '{
         "belongToVirtualMachine": 2,
-        "file_system": "'"${filesystem[$i]}"'",
-        "size": "'"${size[$i]}"'",
-        "used": "'"${used[$i]}"'",
-        "available": "'"${available[$i]}"'",
-        "use%": "'"${usePer[$i]}"'"
+        "file_system": "'"${arrFilesystem[$i]}"'",
+        "size": "'"${arrSize[$i]}"'",
+        "used": "'"${arrUsed[$i]}"'",
+        "available": "'"${arrAvailable[$i]}"'",
+        "use%": "'"${arrUsePer[$i]}"'"
         }'
 done
