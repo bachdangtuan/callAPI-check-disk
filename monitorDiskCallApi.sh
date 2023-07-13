@@ -57,9 +57,10 @@ ykhn104=36
 
 ketqua=$(sshpass -p $passServer ssh $username@$ip "cd /home/${pathscript}/check-partition-disk && bash checkdisk.sh")
 # Đọc kết quả
-# readarray -t result_array <<< "$ketqua"
+readarray -t result_array <<< "$ketqua"
 
-echo $ketqua
+filesystem=${result_array[0]}
+echo 'filesystem' $filesystem
 
 # for ((i=0; i<${#filesystem[@]}; i++)); do
 #     curl -X POST $URL_API/api/check-disk/virtual-disk \
