@@ -63,7 +63,7 @@ filesystem=${result_array[0]}
 size=${result_array[1]}
 used=${result_array[2]}
 available=${result_array[3]}
-use=${result_array[4]}
+usePer=${result_array[4]}
 
 echo 'filesystem' $filesystem
 
